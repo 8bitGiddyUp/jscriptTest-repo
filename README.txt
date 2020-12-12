@@ -1,4 +1,4 @@
-  128 Web DOM
+128 Web DOM
   at console
     document
     console.dir(document)
