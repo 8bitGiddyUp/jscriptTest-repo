@@ -1,4 +1,4 @@
-128 Web DOM 8bit w10 8bit
+128 Web DOM
   at console
     document
     console.dir(document)
