@@ -15,7 +15,7 @@ class Timer{
   }
 
   pause(){
-    console.log("time pause button...");
+    console.log("pause button pressed...");
   }
 }/* class Timer */
 
