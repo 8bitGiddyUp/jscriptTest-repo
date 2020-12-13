@@ -11,7 +11,7 @@ class Timer{
   }/* constructor */
 
   start(){
-    console.log("time start button...");
+    console.log("start button pressed...");
   }
 
   pause(){
