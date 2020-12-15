@@ -1,5 +1,3 @@
-console.log("hello there");
-
 class Timer{
   constructor(durationInput, startButton, pauseButton){
     this.durationInput = durationInput;
@@ -15,7 +13,7 @@ class Timer{
   }
 
   pause(){
-    console.log("time pause button...");
+    console.log("pause button pressed...");
   }
 }/* class Timer */
 
