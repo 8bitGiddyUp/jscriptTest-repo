@@ -29,3 +29,20 @@ const btn = document.querySelector('button');
 btn.addEventListener('click', () => {
   alert("why you click me????");
 });
+
+
+
+
+function TVShow(){
+  return "smallville";
+}
+
+function pickTVShow(tvshow){
+  console.log(tvshow)
+  const tv = function(tvs) {
+    console.log("Now playing", tvs);
+  }
+  tv(tvshow);
+}
+
+pickTVShow(TVShow());
