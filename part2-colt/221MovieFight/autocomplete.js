@@ -46,9 +46,9 @@ const createAutoComplete = ({root,
           - the dropdown box disappears
           - the selected item title is copied to the input box
       */
-      console.log("---", item.Title);
+      // console.log("---", item.Title);
       option.addEventListener('click', () => {
-        console.log("+++", item);
+        // console.log("+++", item);
         dropdown.classList.remove('is-active');
         input.value = inputValue(item);
 
@@ -64,7 +64,7 @@ const createAutoComplete = ({root,
   input.addEventListener('input', debounce(onInput, 500));
 
   document.addEventListener('click', event => {
-    console.log(event.target);
+    // console.log(event.target);
     /*
       if the elements in the root is not clicked, close the dropdown list
     */
