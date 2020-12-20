@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container">
+
+    <h2>Create a new account <?php echo "It works!"; ?></h2>
+
+
+    <!-- return false added to keep the form from reloading -->
+
+    <form id="form1" NAME="userform" METHOD="GET" ONSUBMIT="return validateForm();return false" ACTION="">   
+
+        <fieldset><legend>Create a new Account</legend>
+            <p class="first">
+                <label for="username">Username</label>
+                <input type="text" name="user" id="user" size="30">
+            </p>
+            <p>
+                <label for="pwd">Password</label>
+                <input type="password" name="pwd" id="pwd" size="30" />
+            </p>
+            <p>
+                <label for="repassword">Re-enter Password</label>
+                <input type="password" name="repassword" id="repassword" size="30" />
+            </p>
+
+        </fieldset>             
+
+        <p class="submit"><button type="submit" value="Submit">Signup</button></p>          
+
+    </form> 
+
+</div>
+  <script src="./write.js"></script>
+</body>
+</html>
