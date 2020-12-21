@@ -1,0 +1,18 @@
+TO ADD 'nls'
+  cd dir to the 'nls' package.json location
+  chmod +x index.js
+  add
+    #!/usr/bin/env node
+  npm init -y
+  edit package.json
+    ,
+    "bin": {
+      "nls": "index.js"
+    }
+  sudo npm link -> to make 'nls' available globally
+
+TO REMOVE 'nls'
+  cd dir to the 'nls' package.json
+    -> sudo npm unlink
+
+npmjs.com -> available packages
