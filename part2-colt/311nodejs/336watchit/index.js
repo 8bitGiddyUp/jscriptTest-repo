@@ -20,8 +20,18 @@ program
       throw new Error(`could not find the file ${name}`);
     }
 
+    /*
+      to stop the duplication of processes
+    */
+    let proc = null;
+
     const start = debounce(() => {
-      spawn('node', [name], {stdio: 'inherit'});
+      if (proc) {
+        proc.kill();
+      }
+      console.log('>>>>> starting process...');
+      proc = spawn('node', [name], {stdio: 'inherit'});
+      console.log("proc: ", proc);
     }, 100);
 
     chokidar
