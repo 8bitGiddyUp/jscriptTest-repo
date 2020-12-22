@@ -5,7 +5,7 @@ const fitbitData = {
   avgCalorieBurn: 5700,
   workoutsThisWeek: '5 of 7',
   avgGoodSleep: '2:13',
-  123: 999,
+  123: "nineninenine",
   'abc': 'abc',
   true: false,
   'my cat': 'meow'
@@ -14,3 +14,4 @@ const fitbitData = {
 let m = 'my cat';
 
 fitbitData.ironman = true;
+// let one23 = fitbitData.123;
