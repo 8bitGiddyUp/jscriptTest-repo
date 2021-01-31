@@ -1,5 +1,5 @@
 {
-  "name": "notes-app",
+  "name": "notes",
   "version": "1.0.0",
   "description": "",
   "main": "notes.js",
@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^4.1.0",
     "validator": "^13.5.2"
   }
 }
