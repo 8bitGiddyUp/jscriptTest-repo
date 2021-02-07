@@ -1,15 +1,8 @@
-const getNotes = require("./notes.js");
+// https://links.mead.io/arrow-challenge
+
+const notes = require("./notes.js");
 const chalk = require("chalk");
 const yargs = require("yargs");
-
-// const msg = getNotes();
-// console.log(msg);
-
-// console.log(chalk.green.bold.underline.inverse("SUCCESS!!!"));
-
-// console.log("w/o yargs: ", process.argv);
-// const commandArg = process.argv[2];
-// console.log(chalk.red(commandArg));
 
 // set version
 yargs.version("1.1.0");
@@ -24,9 +17,16 @@ yargs.command({
       demandOption: true,
       type: "string",
     },
+    body: {
+      describe: "note body",
+      demandOption: true,
+      type: "string",
+    },
   },
-  handler: function (argv) {
-    console.log("handler => adding a new note: argv: ", argv);
+  handler(argv) {
+    console.log("handler => title: ", argv.title);
+    console.log("handler => body: ", argv.body);
+    notes.addNote(argv.title, argv.body);
   },
 });
 
@@ -34,8 +34,16 @@ yargs.command({
 yargs.command({
   command: "remove",
   describe: "remove a note",
-  handler: function () {
-    console.log("handler => removing a new note");
+  builder: {
+    title: {
+      describe: "remove a note",
+      type: "string",
+    },
+  },
+
+  handler(argv) {
+    console.log("handler => removing a note");
+    notes.removeNote(argv.title);
   },
 });
 
@@ -43,18 +51,35 @@ yargs.command({
 yargs.command({
   command: "list",
   describe: "list a note",
-  handler: function () {
-    console.log("handler => listing a new note");
+  handler() {
+    console.log(chalk.green("handler => listing a new note"));
+    notes.listNotes();
   },
 });
 
-// create remove command
+// create read command
 yargs.command({
   command: "read",
   describe: "read a note",
-  handler: function () {
+  builder: {
+    title: {
+      describe: "reading a specific note",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler(argv) {
     console.log("handler => reading a new note");
+    notes.readNote(argv.title);
   },
 });
 
-console.log("w/ yargs: ", yargs.argv);
+/*
+  inits the yargs objects with arguments; without the parse, yargs doesn't
+  execute since its parameters are blank;
+  
+  console.log(yargs.argv) works but
+  
+  it outputs the entire object's content; yargs.parse() is cleaner
+*/
+yargs.parse();
