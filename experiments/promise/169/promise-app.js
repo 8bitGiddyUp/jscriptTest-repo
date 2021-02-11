@@ -1,7 +1,7 @@
 //This is a FAKE Http Request Function
 //It takes 1 second to resolve or reject the promise, depending on the url that is passed in
 const fakeRequest = (url) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((res, rej) => {
     setTimeout(() => {
       const pages = {
         "/users": [
@@ -30,23 +30,59 @@ const fakeRequest = (url) => {
 
       const dt = pages[url];
       if (dt) {
-        resolve({ status: 200, dt }); //resolve with a value!
+        res({ status: 200, dt }); //resolve with a value!
       } else {
-        reject({ status: 404 }); //reject with a value!
+        rej({ status: 404 }); //reject with a value!
       }
     }, 1000);
   });
 };
 
-fakeRequest("/users").then((resData) => {
-  console.log("1 - resData: ", resData);
-  const id = resData.dt[0].id;
-  fakeRequest(`/users/${id}`).then((resData) => {
-    console.log("2 - resData: ", resData);
-    const topPostId = resData.dt.topPostId;
-    console.log("topPostId: ", topPostId);
+console.log("++++++++++++++++++++++++++++++++");
+fakeRequest("/users")
+  .then((resD) => {
+    const id = resD.dt[0].id;
+    fakeRequest(`/users/${id}`)
+      .then((rData) => {
+        console.log("2 - resData: ", rData.dt.topPostId);
+        const topPostId = rData.dt.topPostId;
+        console.log("topPostId: ", topPostId);
+        fakeRequest(`/post/${topPostId}`)
+          .then((rD) => {
+            console.log("3 - post: ", rD.dt.title);
+          })
+          .catch((e) => {
+            console.log("error: title");
+          });
+      })
+      .catch((e) => {
+        console.log("error: topPostId");
+      });
+  })
+  .catch((e) => {
+    console.log("error: id", e);
   });
-});
+console.log("---------------------------------");
+
+console.log("++++++++++++++++++++++++++++++++");
+// now with chaining; one "catch" catches all errors
+fakeRequest("/users")
+  .then((rD) => {
+    const id = rD.dt[0].id;
+    return fakeRequest(`/users/${id}`);
+  })
+  .then((d) => {
+    const topPostId = d.dt.topPostId;
+    return fakeRequest(`/posts/${topPostId}`);
+  })
+  .then((d) => {
+    const title = d.dt.title;
+    console.log("6 - title: ", title);
+  })
+  .catch((e) => {
+    console.log("7 - error: ", e);
+  });
+console.log("---------------------------------");
 
 // promise chaining
 // fakeRequest('/users')
