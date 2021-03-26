@@ -62,6 +62,14 @@ app.get("/weather", (req, res) => {
   res.send({ forecast: "sunny and mild", location: "boston" });
 });
 
+app.get("/help/*", (req, res) => {
+  res.send("Help article not found...");
+});
+
+app.get("*", (req, res) => {
+  res.send("the end of the road: 404");
+});
+
 // to start an express server
 app.listen(3000, () => {
   console.log("server is up on port 3000");
