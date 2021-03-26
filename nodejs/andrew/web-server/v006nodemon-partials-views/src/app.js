@@ -1,3 +1,6 @@
+// makes nodemon to recognize 'hbs'
+// nodemon src/app.js -e js,hbs
+
 const path = require("path");
 const express = require("express");
 const hbs = require("hbs");
