@@ -59,7 +59,40 @@ app.get("/help", (req, res) => {
 });
 
 app.get("/weather", (req, res) => {
-  res.send({ forecast: "sunny and mild", location: "boston" });
+  if (!req.query.address) {
+    return res.send({
+      error: "you must provide an address... /weather?address=<>",
+    });
+  }
+
+  res.send({
+    forecast: "sunny and mild",
+    location: "philadelphia",
+    address: req.query.address,
+  });
+});
+
+app.get("/products", (req, res) => {
+  /*
+    "return" prevents res.send from running twice with one req call
+
+    search term format:
+    http://localhost:3000/products?search=games&rating=5
+      this query is accessed with "req"
+  */
+  if (!req.query.search) {
+    /*
+      return res.send is required because only one res.send allowed
+    */
+    return res.send({
+      error: "you must provide a search term: /products?search=<>&rating=<>",
+    });
+  }
+
+  console.log("req.query: ", req.query, req.query.search, req.query.rating);
+  res.send({
+    products: [],
+  });
 });
 
 app.get("/help/*", (req, res) => {
