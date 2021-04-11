@@ -70,15 +70,14 @@ app.get("/weather", (req, res) => {
 
   geocode(req.query.address, (e, { lat, lon, location }) => {
     if (e) {
-      return res.send("ERROR: address is wrong... ", e);
+      return res.send({ error: e });
     }
 
     forecast({ lat, lon, location }, (e, wdata) => {
       if (e) {
-        return res.send("ERROR: weather data is wrong...", e);
+        return res.send({ error: e });
       }
 
-      console.log("wdata: ", wdata);
       res.send({
         forecast: wdata,
         location,
