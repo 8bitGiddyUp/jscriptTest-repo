@@ -1,9 +1,12 @@
 // makes nodemon to recognize 'hbs'
 // nodemon src/app.js -e js,hbs
+// function prompt{"> "}
 
 const path = require("path");
 const express = require("express");
 const hbs = require("hbs");
+const geocode = require("./utils/geocode");
+const forecast = require("./utils/forecast");
 
 console.log("__dirname: ", __dirname);
 console.log("path.join: ", path.join(__dirname, "../public"));
@@ -65,10 +68,23 @@ app.get("/weather", (req, res) => {
     });
   }
 
-  res.send({
-    forecast: "sunny and mild",
-    location: "philadelphia",
-    address: req.query.address,
+  geocode(req.query.address, (e, { lat, lon, location }) => {
+    if (e) {
+      return res.send("ERROR: address is wrong... ", e);
+    }
+
+    forecast({ lat, lon, location }, (e, wdata) => {
+      if (e) {
+        return res.send("ERROR: weather data is wrong...", e);
+      }
+
+      console.log("wdata: ", wdata);
+      res.send({
+        forecast: wdata,
+        location,
+        address: req.query.address,
+      });
+    });
   });
 });
 
