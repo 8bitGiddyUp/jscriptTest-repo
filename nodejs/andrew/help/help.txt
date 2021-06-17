@@ -1,2 +1,10 @@
 https://links.mead.io/nodecourse
 
+function prompt{"> "}
+
++++++++++++++++
+to repopulate node-modules:
+  - change dir to the project folder
+    cd ../notes-app
+    > npm install  -> recreates the node-modules
+------------
