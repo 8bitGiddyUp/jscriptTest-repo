@@ -2,9 +2,30 @@ https://links.mead.io/nodecourse
 
 function prompt{"> "}
 
-+++++++++++++++
++++ to start npm module
+initialize npm env
+  - cd ../node-course
+  - npm init
+  - npm i <module-name>
+--- to start npm module
+
++++ to repop node-modules
 to repopulate node-modules:
   - change dir to the project folder
     cd ../notes-app
     > npm install  -> recreates the node-modules
-------------
+--- to repop node-modules
+
++++ npm global install
+when an npm module is installed globally, it is not listed in:
+  - package-lock.json
+  - package.json
+npm i nodemon@1.18.5 -g 
+
+how to use it:
+  - nodemon app.js -> instead of "node app.js"
+
+to stop it:
+  - ctrl - c
+--- npm global install
+
