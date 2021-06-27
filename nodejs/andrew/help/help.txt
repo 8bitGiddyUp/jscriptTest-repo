@@ -6,7 +6,7 @@ function prompt{"> "}
 initialize npm env
   - cd ../node-course
   - npm init
-  - npm i <module-name>
+  - npm i <module-name>@0.0.0
 --- to start npm module
 
 +++ to repop node-modules
